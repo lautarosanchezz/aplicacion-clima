@@ -1,4 +1,4 @@
-const axios = require('axios');
+const lugar = require('./lugar/lugar')
 
 const argv = require('yargs').options({
     direccion: {
@@ -10,18 +10,7 @@ const argv = require('yargs').options({
 
 console.log(argv.direccion);
 
-const encodeUrl = encodeURI( argv.direccion);
-console.log(encodeUrl);
+ // argv.direccion
 
-const instance = axios.create({
-    baseURL: `https://geocode.xyz/Hauptstr.,+57632+${encodeUrl}?json=1`,
-       // headers: {'X-Custom-Header': 'foobar'}
-  });
-
-  instance.get()
-        .then( resp => {
-            console.log(resp.data);
-        })
-        .catch( err => {
-            console.log('Error', err);
-        });
+lugar.getLugarLatLng( argv.direccion )
+.then (console.log);
